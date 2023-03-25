@@ -71,8 +71,5 @@ public class DeckGUI extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
-        DeckGUI gui = new DeckGUI();
-        gui.setVisible(true);
-    }
+
 }
