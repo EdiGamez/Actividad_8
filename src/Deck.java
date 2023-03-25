@@ -18,34 +18,45 @@ public class Deck {
             }
         }
     }
-
     public void shuffle() {
         Collections.shuffle(cards);
         System.out.println("Se mezcló el Deck.");
     }
-
-    public void head() {
+    public String head() {
         Card card = cards.get(0);
         cards.remove(0);
-        System.out.printf("%s,%s\n", card.getSuit(), card.getColor());
-        System.out.printf("Quedan %d cartas en el Deck\n", cards.size());
+        String output = String.format("%s,%s\n", card.getSuit(), card.getColor());
+        output += String.format("Quedan %d cartas en el Deck\n", cards.size());
+        return output;
     }
 
-    public void pick() {
+    public String pick() {
         int randomIndex = (int) (Math.random() * cards.size());
         Card card = cards.get(randomIndex);
         cards.remove(randomIndex);
-        System.out.printf("%s,%s\n", card.getSuit(), card.getColor());
-        System.out.printf("Quedan %d cartas en el Deck\n", cards.size());
+        String output = String.format("%s,%s\n", card.getSuit(), card.getColor());
+        output += String.format("Quedan %d cartas en el Deck\n", cards.size());
+        return output;
     }
 
-    public void hand() {
+    public String hand() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 5; i++) {
             Card card = cards.get(0);
             cards.remove(0);
-            System.out.printf("%s,%s\n", card.getSuit(), card.getColor());
+            sb.append(String.format("%s,%s\n", card.getSuit(), card.getColor()));
         }
-        System.out.printf("Quedan %d cartas en el Deck\n", cards.size());
+        sb.append(String.format("Quedan %d cartas en el Deck\n", cards.size()));
+        return sb.toString();
     }
-
+    public String deal(int numCards) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numCards && i < cards.size(); i++) {
+            Card card = cards.get(i);
+            sb.append(String.format("%s,%s\n", card.getSuit(), card.getColor()));
+        }
+        cards.subList(0, numCards).clear();
+        sb.append(String.format("Quedan %d cartas en el Deck\n", cards.size()));
+        return sb.toString();
+    }
 }
