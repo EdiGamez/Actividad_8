@@ -22,10 +22,7 @@ public class Deck {
         Collections.shuffle(cards);
         System.out.println("Se mezcló el Deck.");
     }
-    public String head() throws Exception{
-        if (cards.isEmpty()) {
-            throw new Exception("Se han agotado las cartas");
-        }
+    public String head() {
         Card card = cards.get(0);
         cards.remove(0);
         String output = String.format("%s,%s\n", card.getSuit(), card.getColor());
@@ -33,10 +30,7 @@ public class Deck {
         return output;
     }
 
-    public String pick() throws Exception{
-        if (cards.isEmpty()) {
-            throw new Exception("Se han agotado las cartas");
-        }
+    public String pick() {
         int randomIndex = (int) (Math.random() * cards.size());
         Card card = cards.get(randomIndex);
         cards.remove(randomIndex);
@@ -45,10 +39,7 @@ public class Deck {
         return output;
     }
 
-    public String hand() throws Exception{
-        if (cards.isEmpty()) {
-            throw new Exception("Se han agotado las cartas");
-        }
+    public String hand() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 5; i++) {
             Card card = cards.get(0);
@@ -58,10 +49,7 @@ public class Deck {
         sb.append(String.format("Quedan %d cartas en el Deck\n", cards.size()));
         return sb.toString();
     }
-    public String deal(int numCards) throws Exception{
-        if (cards.isEmpty()) {
-            throw new Exception("Se han agotado las cartas");
-        }
+    public String deal(int numCards) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < numCards && i < cards.size(); i++) {
             Card card = cards.get(i);

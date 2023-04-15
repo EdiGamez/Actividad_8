@@ -47,30 +47,29 @@ public class DeckGUI extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        try {
-            if (e.getSource() == shuffleButton) {
-                deck.shuffle();
-                outputTextArea.setText("El mazo ha sido barajado.\n");
-            } else if (e.getSource() == headButton) {
-                outputTextArea.setText("Carta en la cabeza: " + deck.head() + "\n");
-            } else if (e.getSource() == pickButton) {
-                outputTextArea.setText("Carta al azar: " + deck.pick() + "\n");
-            } else if (e.getSource() == handButton) {
-                outputTextArea.setText("Mano de 5 cartas:\n" + deck.hand() + "\n");
-            } else if (e.getSource() == drawButton) {
+        if (e.getSource() == shuffleButton) {
+            deck.shuffle();
+            outputTextArea.setText("El mazo ha sido barajado.\n");
+        } else if (e.getSource() == headButton) {
+            outputTextArea.setText("Carta en la cabeza: " + deck.head() + "\n");
+        } else if (e.getSource() == pickButton) {
+            outputTextArea.setText("Carta al azar: " + deck.pick() + "\n");
+        } else if (e.getSource() == handButton) {
+            outputTextArea.setText("Mano de 5 cartas:\n" + deck.hand() + "\n");
+        } else if (e.getSource() == drawButton) {
+            try {
                 int numCards = Integer.parseInt(inputTextField.getText());
                 if (numCards <= 5) {
                     String cards = deck.deal(numCards);
                     outputTextArea.setText("Cartas robadas:\n" + cards + "\n");
                 } else {
-                    throw new Exception("No puedes robar más de 5 cartas.");
+                    outputTextArea.setText("No puedes robar más de 5 cartas.\n");
                 }
+            } catch (NumberFormatException ex) {
+                outputTextArea.setText("Por favor ingresa un número válido.\n");
             }
-        } catch (NumberFormatException ex) {
-            outputTextArea.setText("Por favor ingresa un número válido.\n");
-        } catch (Exception ex) {
-            outputTextArea.setText(ex.getMessage() + "\n");
         }
     }
-}
 
+
+}
